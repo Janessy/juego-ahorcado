@@ -1,0 +1,77 @@
+h1{
+    text-align: center;
+}
+
+.d-none{
+    display: none !important;
+}
+.d-block{
+    display: block;
+}
+.color-alert{
+    color: #f06543;
+}
+.main{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.cont-intro{
+    padding: 16px;
+    margin: 8px;
+}
+.cont-intro h3{
+    text-align: end;
+    padding: 0 24px;
+    font-weight: normal;
+}
+.cont-juego{
+    display: flex;
+    justify-content: space-around;   
+    margin: 8px;
+    padding: 16px;
+}
+.cont-juego-palabra{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+}
+.cont-juego-palabra p{
+    text-align: center;
+    font-size: 2.1rem;
+    padding: 16px;
+}
+.cont-juego-img{
+    display: flex;
+    justify-content: center;
+    width: 40%;
+}
+input{
+    border-radius: 4px;
+    width: 360px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    margin: 10px;
+}
+.btn-primary{
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    background: #246eb9;
+    color: white;
+}
+.cont-juego-img img{
+    width: 50%;
+    margin: auto;
+}
