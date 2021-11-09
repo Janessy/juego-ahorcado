@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Palabra } from 'src/models/palabra';
 
 @Component({
   selector: 'app-palabra',
@@ -7,13 +8,41 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
 })
 export class PalabraComponent{
 
-  arrayPalabras: string[] = ['MONALISA','EGIPTO','PARIS','INDIA','HULK','VENOM','SPIDERMAN'];  
-  palabraRandom = '';
-  palabraOculta = '';
-  textUsuario:string = '';  
-  contErrores = 0;
-  intentos = 8;
- 
+  palabras: Palabra[] = [
+    {
+      pista: 'Personaje de Marvel',
+      nombre: 'Hulk'
+    },
+    {
+      pista: 'Pais de Africa',
+      nombre: 'Egipto'
+    },
+    {
+      pista: 'Personaje de Marvel',
+      nombre: 'Spiderman'
+    },
+    {
+      pista: 'Ciudad mas poblada de Francia',
+      nombre: 'Paris'
+    },
+    {
+      pista: 'Personaje de Marvel',
+      nombre: 'Venom'
+    },
+    {
+      pista: 'Pais de Asia',
+      nombre: 'India'
+    }
+  ];
+
+  palabraRandom: string = '';
+  palabraRandom_pista: string = '';
+  palabraOculta: string = '';
+  textUsuario: string = '';  
+  contErrores: number = 0;
+  intentos: number = 8;
+  mensaje: string = '';
+
   constructor() {
     this.seleccionarPalabraRandom();
   } 
@@ -22,8 +51,10 @@ export class PalabraComponent{
   }
 
   seleccionarPalabraRandom(){
-    this.palabraRandom = this.arrayPalabras[Math.floor(Math.random()*this.arrayPalabras.length)];
-    console.log(this.palabraRandom);
+    let numRandom = Math.floor(Math.random()*this.palabras.length);
+    this.palabraRandom = this.palabras[numRandom].nombre;
+    this.palabraRandom_pista = this.palabras[numRandom].pista;
+    
     for (let i = 0; i < this.palabraRandom.length; i++) {
       this.palabraOculta = this.palabraOculta + '_ ';     
     }
@@ -36,12 +67,10 @@ export class PalabraComponent{
 
     if(letra != ''){
       for (let i = 0; i < this.palabraRandom.length; i++) {
-        if (letra.toUpperCase() == this.palabraRandom[i]) {
+        if (letra.toUpperCase() == this.palabraRandom[i].toUpperCase()) {
           palabraAcertada = palabraAcertada + letra + ' ';
-          console.log(palabraAcertada);
         }else{
           palabraAcertada = palabraAcertada + this.palabraOculta[i*2] + ' ';
-          console.log(palabraAcertada);
         }          
       } 
       
@@ -54,13 +83,16 @@ export class PalabraComponent{
           this.contErrores++;
           this.intentos--;
         }
-      }else{
-        console.log('perdiste')
+      }
+
+      //Enviar mensaje cuando pierde el juego
+      if(this.contErrores == 8){
+        this.mensaje = 'Perdiste';
       }
 
       //¿Ganó el juego?
       if (this.palabraOculta.indexOf('_') == -1) {
-        console.log('Felicitaciones, ganaste');
+        this.mensaje = 'Felicitaciones, ganaste';
       }
     }else{
       alert('Ingrese una letra');
@@ -70,7 +102,9 @@ export class PalabraComponent{
   jugarDeNuevo(){
     this.intentos = 8;
     this.contErrores = 0;
-
+    this.mensaje = '';
+    this.palabraOculta = '';
+    this.textUsuario = '';
     this.seleccionarPalabraRandom();
   }
 }

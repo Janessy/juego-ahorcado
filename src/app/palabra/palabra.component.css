@@ -1,15 +1,27 @@
 h1{
     text-align: center;
+    color: #38A89B;
 }
-
+h2{
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: #808080;
+}
+.align-items-center{
+    display: flex;
+    align-items: center;
+}
 .d-none{
     display: none !important;
 }
 .d-block{
     display: block;
 }
-.color-alert{
-    color: #f06543;
+.color-red{
+    color: #ff0000;
+}
+.color-green{
+    color: #008000;
 }
 .main{
     height: 100vh;
@@ -17,7 +29,7 @@ h1{
     flex-direction: column;
 }
 .cont-intro{
-    padding: 16px;
+    padding: 16px 16px 0;
     margin: 8px;
 }
 .cont-intro h3{
@@ -27,33 +39,39 @@ h1{
 }
 .cont-juego{
     display: flex;
+    flex-direction: column;
+    padding: 0 16px 16px;
     justify-content: space-around;   
     margin: 8px;
-    padding: 16px;
 }
 .cont-juego-palabra{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 100%;
+}
+.cont-juego-palabra>div{
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 .cont-juego-palabra p{
     text-align: center;
     font-size: 2.1rem;
     padding: 16px;
+    margin: 4px 0;
 }
 .cont-juego-img{
     display: flex;
     justify-content: center;
-    width: 40%;
+    width: 100%;
 }
 input{
     border-radius: 4px;
-    width: 360px;
+    width: 312px;
+    margin: 10px 0;
     border: 1px solid #000;
     box-sizing: border-box;
     padding: 8px 12px;
-    margin: 10px;
 }
 .btn-primary{
     cursor: pointer;
@@ -64,7 +82,7 @@ input{
     text-decoration: none;
     text-align: center;
     margin: 0;
-    min-width: 64px;
+    width: 128px;
     line-height: 36px;
     padding: 0 16px;
     border-radius: 4px;
@@ -72,6 +90,38 @@ input{
     color: white;
 }
 .cont-juego-img img{
-    width: 50%;
-    margin: auto;
+    width: 120px;
+    padding: 24px 0;
+}
+
+
+@media screen and (min-width: 768px) {
+    .cont-intro{
+        padding: 16px;
+    }
+    .cont-juego{
+        flex-direction: row;
+        padding: 16px;
+    }
+    .cont-juego-palabra{
+        width: 60%;
+    }
+    .cont-juego-img{
+        width: 40%;
+    }
+    .cont-juego-img img{
+        width: 50%;
+        margin: auto;
+        padding: 0;
+    }
+    input{
+        width: 360px;        
+        margin: 10px 10px 10px 0;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .cont-juego-palabra{
+        align-items: center;
+    }
 }

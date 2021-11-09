@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { PalabraComponent } from './palabra/palabra.component';
@@ -17,10 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     CommonModule,
     FormsModule,
-    BrowserAnimationsModule,
-    MatButtonModule
+    BrowserAnimationsModule
   ],
-  exports: [MatButtonModule],
   providers: [],
   bootstrap: [AppComponent]
 })

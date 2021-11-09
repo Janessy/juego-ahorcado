@@ -2,13 +2,20 @@
 
     <div class="cont-intro">
         <h1>JUEGO AHORCADO</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, voluptas, laudantium omnis odio temporibus aliquam libero error ipsa qui magnam delectus iure corporis eius dignissimos, quibusdam ipsum perferendis quas voluptates.</p>
-        <h3>Número de intentos: {{intentos}}</h3>
+        <p>
+            - El juego consiste en adivinar la palabra palabra oculta. <br>
+            - Tienes 8 intentos, agotados los intentos el juego termina. <br>
+        </p>
+        <h3 [ngClass]="{'d-none': mensaje !='', 
+                        'd-block': mensaje == '',
+                        'color-red': intentos <= 4,
+                        'color-green': intentos > 4}">Número de intentos: {{intentos}}</h3>
     </div>
     
     <div class="cont-juego">    
-        <div class="cont-juego-palabra">
-            <div [ngClass]="{'d-none': contErrores == 8}">                
+        <div class="cont-juego-palabra"  [ngClass]="{'align-items-center': mensaje !=''}">
+            <div [ngClass]="{'d-none align-items-center': mensaje !='', 'd-block': mensaje == ''}">
+                <h2>{{palabraRandom_pista | uppercase}}</h2>              
                 <input [(ngModel)]='textUsuario'
                         type="text"
                         maxlength="1"
@@ -20,15 +27,16 @@
             </div>
             
             <p [ngClass]="{'d-none': contErrores == 8}">{{palabraOculta}}</p>
-            <p *ngIf="contErrores == 8">GAME OVER</p>
+            <p>{{mensaje}}</p>
 
-            <button [ngClass]="{'d-block': contErrores == 8 , 'd-none': contErrores != 8}" 
+            <button [ngClass]="{'d-block': mensaje != '' , 'd-none': mensaje==''}" 
                     class="btn-primary"
                     (click)="jugarDeNuevo()">
                 Jugar de nuevo
             </button>
         </div>
-        <div class="cont-juego-img">
+        <div class="cont-juego-img"
+             [ngClass]="{'d-none': mensaje === 'Felicitaciones, ganaste'}">
             <img *ngIf="contErrores == 1" src="/assets/img/1.png" alt="">
             <img *ngIf="contErrores == 2" src="/assets/img/2.png" alt="">
             <img *ngIf="contErrores == 3" src="/assets/img/3.png" alt="">
